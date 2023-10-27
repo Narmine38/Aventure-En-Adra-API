@@ -155,7 +155,7 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN' , 'https://aventure-en-adra.netlify.app/'),
+    'domain' => env('SESSION_DOMAIN' , 'https://aventure-en-adra.netlify.app'),
 
     /*
     |--------------------------------------------------------------------------
