@@ -14,5 +14,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return redirect('chemin/vers/la/documentation');
+    return redirect('api/documentation');
 });

@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+
     /**
      * Affiche la liste de tous les utilisateurs actifs (non archivés).
      *
@@ -23,10 +24,39 @@ class UserController extends Controller
 
     /**
      * Crée et stocke un nouvel utilisateur dans la base de données.
-     *
-     * @param Request $request
-     * @return JsonResponse
+    **/
+
+    /**
+     * @OA\Post(
+     *     path="/users",
+     *     tags={"Users"},
+     *     summary="Créer un nouvel utilisateur",
+     *     description="Enregistre un nouvel utilisateur dans la base de données après validation.",
+     *     @OA\RequestBody(
+     *         required=true,
+     *         description="Données de l'utilisateur pour l'inscription",
+     *         @OA\JsonContent(
+     *             required={"name","email","password"},
+     *             @OA\Property(property="name", type="string", example="John Doe"),
+     *             @OA\Property(property="email", type="string", format="email", example="john.doe@example.com"),
+     *             @OA\Property(property="password", type="string", format="password", example="password1234"),
+     *         ),
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="Utilisateur enregistré avec succès",
+     *         @OA\JsonContent(
+     *             @OA\Property(property="message", type="string", example="User registered successfully!")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=400,
+     *         description="Mauvaise requête",
+     *     ),
+     *     security={{"bearerAuth":{}}}
+     * )
      */
+
     public function store(Request $request): JsonResponse
     {
         $data = $request->validate([
